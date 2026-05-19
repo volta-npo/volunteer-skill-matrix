@@ -41,6 +41,7 @@
         <button id="sample" class="secondary">Load Sample</button>
         <button id="export-json">Export JSON</button>
         <button id="export-md">Export Markdown</button>
+        <button id="export-saas-md">Export SaaS Blueprint</button>
         <button id="copy-md" class="secondary">Copy Markdown</button>
         <button id="print" class="secondary">Print Report</button>
         <button id="reset" class="secondary">Reset</button>
@@ -97,6 +98,27 @@
           <h2>Next actions</h2>
           <div id="actions"></div>
         </div>
+        <div class="panel saas-dashboard" style="margin-top:1rem">
+          <div class="saas-head">
+            <div>
+              <p class="eyebrow">Standalone SaaS OS</p>
+              <h2>SaaS growth dashboard</h2>
+              <p class="muted">Turn this local-first tool into a packaged product with segments, experiments, success motions, pricing, and governance.</p>
+            </div>
+            <div class="risk-badge">Risk: <strong id="saas-risk">—</strong></div>
+          </div>
+          <div id="saas-profile" class="saas-profile"></div>
+          <div id="saas-kpis" class="saas-kpis" aria-label="SaaS KPIs"></div>
+          <div class="saas-grid">
+            <section><h3>Customer segments</h3><div id="saas-segments" class="saas-list"></div></section>
+            <section><h3>Growth experiments</h3><div id="saas-experiments" class="saas-list"></div></section>
+            <section><h3>Customer success board</h3><div id="saas-board" class="saas-list"></div></section>
+            <section><h3>30/60/90 milestones</h3><div id="saas-milestones" class="saas-list"></div></section>
+            <section><h3>Automation backlog</h3><div id="saas-automations" class="saas-list"></div></section>
+            <section><h3>Pricing ladder</h3><div id="saas-pricing" class="saas-list"></div></section>
+          </div>
+        </div>
+
       </section>
     </section>
   </main>

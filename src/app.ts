@@ -1,5 +1,6 @@
 import { config } from './config.js';
 import { createInitialState, calculateScore, readinessWarnings, buildMarkdownReport, exportJson, applySampleData } from './core.js';
+import { createSaasMetrics, buildSaasMarkdown } from './saas-core.js';
 
 const key = `volta-oss:${config.slug}:workspace`;
 const $ = (selector) => document.querySelector(selector);
@@ -55,7 +56,9 @@ function render() {
   $('#score-label').textContent = result.label;
   $('#score-ring').style.background = `conic-gradient(var(--accent) ${result.score * 3.6}deg, rgba(255,255,255,.14) 0deg)`;
   $('#score-ring').setAttribute('aria-valuenow', result.score);
-  $('#warnings').innerHTML = readinessWarnings(config, state).map((warning) => `<li>${escapeHtml(warning)}</li>`).join('') || '<li>No readiness warnings.</li>';
+  const warnings = readinessWarnings(config, state);
+  $('#warnings').innerHTML = warnings.map((warning) => `<li>${escapeHtml(warning)}</li>`).join('') || '<li>No readiness warnings.</li>';
+  renderSaasDashboard(result, warnings);
 
   $('#criteria').innerHTML = result.breakdown.map((item) => criterionTemplate(item)).join('');
   $('#evidence-list').innerHTML = (state.evidence || []).map((item) => `<article class="evidence"><strong>${escapeHtml(item.title)}</strong><p>${escapeHtml(item.detail)}</p><button data-remove-evidence="${item.id}">Remove</button></article>`).join('') || '<p class="muted">No evidence yet. Add screenshots, interview notes, links, or reviewer observations.</p>';
@@ -66,6 +69,22 @@ function render() {
   $('#ownerApproval').checked = Boolean(state.approvals.ownerApproval);
 
   bindDynamicEvents();
+}
+
+
+function renderSaasDashboard(result, warnings) {
+  const dashboard = createSaasMetrics(config, state, result, warnings);
+  const kpis = $('#saas-kpis');
+  if (!kpis) return;
+  kpis.innerHTML = dashboard.kpis.map((kpi) => `<article><strong>${kpi.value}${escapeHtml(kpi.suffix)}</strong><span>${escapeHtml(kpi.label)}</span><p>${escapeHtml(kpi.detail)}</p></article>`).join('');
+  $('#saas-risk').textContent = dashboard.risk;
+  $('#saas-profile').innerHTML = `<strong>${escapeHtml(dashboard.profile.client)}</strong><span>${escapeHtml(dashboard.profile.chapter)} · ${escapeHtml(dashboard.profile.lead)}</span><span>${dashboard.profile.readyCriteria}/${config.criteria.length} gates ready · ${dashboard.profile.evidenceCount} evidence item(s)</span>`;
+  $('#saas-segments').innerHTML = dashboard.segments.map((segment) => `<article><strong>${escapeHtml(segment.name)}</strong><p>${escapeHtml(segment.need)}</p><small>${escapeHtml(segment.package)} · ${escapeHtml(segment.successMetric)}</small></article>`).join('');
+  $('#saas-experiments').innerHTML = dashboard.experiments.map((experiment) => `<article><strong>${escapeHtml(experiment.title)}</strong><p>${escapeHtml(experiment.hypothesis)}</p><small>Measure: ${escapeHtml(experiment.metric)} · Owner: ${escapeHtml(experiment.owner)}</small></article>`).join('');
+  $('#saas-board').innerHTML = dashboard.board.map((item) => `<article><strong>${escapeHtml(item.stage)}</strong><p>${escapeHtml(item.playbook)}</p><small>${escapeHtml(item.health)}</small></article>`).join('');
+  $('#saas-milestones').innerHTML = dashboard.milestones.map((milestone) => `<article><strong>${escapeHtml(milestone.window)}</strong><p>${escapeHtml(milestone.outcome)}</p><small>${escapeHtml(milestone.evidence)}</small></article>`).join('');
+  $('#saas-automations').innerHTML = dashboard.automations.map((automation) => `<article><strong>${escapeHtml(automation.name)}</strong><p>${escapeHtml(automation.trigger)} → ${escapeHtml(automation.action)}</p></article>`).join('');
+  $('#saas-pricing').innerHTML = dashboard.pricing.map((tier) => `<article><strong>${escapeHtml(tier.tier)}</strong><p>${escapeHtml(tier.audience)}</p><small>${escapeHtml(tier.promise)} · ${escapeHtml(tier.price)}</small></article>`).join('');
 }
 
 function criterionTemplate(item) {
@@ -158,6 +177,7 @@ function wireStaticEvents() {
   $('#reset').addEventListener('click', () => { if (confirm('Reset this local workspace?')) { state = createInitialState(config); saveState(); render(); } });
   $('#export-json').addEventListener('click', () => download(`${config.slug}-workspace.json`, exportJson(config, state), 'application/json'));
   $('#export-md').addEventListener('click', () => download(`${config.slug}-handoff.md`, buildMarkdownReport(config, state), 'text/markdown'));
+  $('#export-saas-md').addEventListener('click', () => download(`${config.slug}-saas-blueprint.md`, buildSaasMarkdown(config, state, calculateScore(config, state), readinessWarnings(config, state)), 'text/markdown'));
   $('#copy-md').addEventListener('click', async () => { await navigator.clipboard.writeText(buildMarkdownReport(config, state)); $('#copy-md').textContent = 'Copied'; setTimeout(() => $('#copy-md').textContent = 'Copy Markdown', 1200); });
   $('#print').addEventListener('click', () => window.print());
 }

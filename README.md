@@ -12,7 +12,7 @@
 
 **Student Agency Operations** · **No backend. No login. Client data stays local.**
 
-[Live app](https://volta-npo.github.io/volunteer-skill-matrix/) · [Report an issue](https://github.com/volta-npo/volunteer-skill-matrix/issues) · [Volta](https://voltanpo.org)
+[Live app](https://volta-npo.github.io/48-volunteer-skill-matrix/) · [Report an issue](https://github.com/volta-npo/48-volunteer-skill-matrix/issues) · [Volta](https://voltanpo.org)
 
 </div>
 
@@ -182,7 +182,7 @@ This repo is designed to be usable as a real OSS product, not just a static demo
 ## 🛠️ Quick start
 
 ```bash
-git clone https://github.com/volta-npo/volunteer-skill-matrix.git
+git clone https://github.com/volta-npo/48-volunteer-skill-matrix.git
 cd 48-volunteer-skill-matrix
 npm install
 npm test

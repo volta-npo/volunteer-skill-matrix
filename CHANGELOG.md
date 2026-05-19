@@ -2,7 +2,7 @@
 
 ## 3.0.0
 
-- Promoted Volunteer Skill Matrix to v3 production certification.
+- Promoted Volunteer Skill Matrix to release certification.
 - Added release gates, integrity hashing, import/export round-trip support, operational docs, and rigorous v3 tests.
 
 ## 1.0.0

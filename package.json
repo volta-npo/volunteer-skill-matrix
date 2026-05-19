@@ -5,11 +5,12 @@
   "type": "module",
   "description": "A skills inventory that matches students to projects without overloading the same top performers.",
   "scripts": {
-    "test": "node --test",
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && node --test test/*.test.js",
     "start": "python3 -m http.server 4173",
-    "validate": "node --test",
-    "certify": "node --test test/v3.test.js",
-    "test:all": "node --test"
+    "validate": "npm test",
+    "certify": "npm run build && node --test test/v3.test.js",
+    "test:all": "npm test"
   },
   "keywords": [
     "digital-equity",
@@ -22,14 +23,18 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/volta-npo/48-volunteer-skill-matrix.git"
+    "url": "git+https://github.com/volta-npo/volunteer-skill-matrix.git"
   },
-  "homepage": "https://volta-npo.github.io/48-volunteer-skill-matrix/",
+  "homepage": "https://volta-npo.github.io/volunteer-skill-matrix/",
   "bugs": {
-    "url": "https://github.com/volta-npo/48-volunteer-skill-matrix/issues"
+    "url": "https://github.com/volta-npo/volunteer-skill-matrix/issues"
   },
   "author": "Volta OSS Division <volta.npo@gmail.com>",
   "engines": {
     "node": ">=20"
+  },
+  "devDependencies": {
+    "typescript": "^6.0.3",
+    "@types/node": "^24.0.0"
   }
 }

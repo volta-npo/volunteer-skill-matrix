@@ -1,0 +1,35 @@
+{
+  "name": "@volta-oss/volunteer-skill-matrix",
+  "version": "3.0.0",
+  "private": false,
+  "type": "module",
+  "description": "A skills inventory that matches students to projects without overloading the same top performers.",
+  "scripts": {
+    "test": "node --test",
+    "start": "python3 -m http.server 4173",
+    "validate": "node --test",
+    "certify": "node --test test/v3.test.js",
+    "test:all": "node --test"
+  },
+  "keywords": [
+    "digital-equity",
+    "local-first",
+    "oss",
+    "student agency operations",
+    "v3-production",
+    "volta"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/volta-npo/48-volunteer-skill-matrix.git"
+  },
+  "homepage": "https://volta-npo.github.io/48-volunteer-skill-matrix/",
+  "bugs": {
+    "url": "https://github.com/volta-npo/48-volunteer-skill-matrix/issues"
+  },
+  "author": "Volta OSS Division <volta.npo@gmail.com>",
+  "engines": {
+    "node": ">=20"
+  }
+}

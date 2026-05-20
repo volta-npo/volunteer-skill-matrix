@@ -90,3 +90,21 @@ textarea { resize:vertical; }
 @media print{main::before{content:attr(data-print-title);display:block;font-size:1.4rem;font-weight:900;margin-bottom:1rem}.domain-tool,.v1,.v3{break-inside:avoid}.domain-layout,.v1-grid,.v3-grid{grid-template-columns:1fr}.table-wrap{overflow:visible}.domain-table,.v1-table{min-width:0}}
 @media(forced-colors:active){button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid ButtonText}.score-ring{border:2px solid ButtonText}}
 
+
+.saas-dashboard { border:2px solid color-mix(in srgb,var(--accent) 26%,white); }
+.saas-head { display:flex; justify-content:space-between; gap:1rem; align-items:flex-start; flex-wrap:wrap; }
+.risk-badge { border:1px solid var(--line); border-radius:999px; padding:.55rem .85rem; background:color-mix(in srgb,var(--accent) 9%,white); font-weight:900; }
+.saas-profile { display:flex; flex-wrap:wrap; gap:.6rem; align-items:center; margin:.8rem 0; color:var(--muted); }
+.saas-profile strong { color:var(--ink); }
+.saas-profile span { border-left:1px solid var(--line); padding-left:.6rem; }
+.saas-kpis { display:grid; grid-template-columns:repeat(auto-fit,minmax(10rem,1fr)); gap:.8rem; margin:1rem 0; }
+.saas-kpis article, .saas-list article { border:1px solid var(--line); border-radius:1rem; padding:.85rem; background:rgba(255,255,255,.72); }
+.saas-kpis strong { display:block; font-size:1.8rem; color:var(--accent); letter-spacing:-.06em; }
+.saas-kpis span { font-weight:900; }
+.saas-kpis p, .saas-list p { margin:.35rem 0 0; color:var(--muted); }
+.saas-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(19rem,1fr)); gap:1rem; }
+.saas-grid h3 { margin:.2rem 0 .6rem; }
+.saas-list { display:grid; gap:.55rem; }
+.saas-list small { display:block; margin-top:.35rem; color:var(--muted); font-weight:800; }
+@media(max-width:900px){ .saas-kpis,.saas-grid{grid-template-columns:1fr;} .saas-profile span{border-left:0;padding-left:0;} }
+@media(prefers-color-scheme:dark){.risk-badge,.saas-kpis article,.saas-list article{background:rgba(15,23,42,.78);}}

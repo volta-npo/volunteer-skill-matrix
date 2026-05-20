@@ -205,7 +205,7 @@ function buildMilestones(config, state, score) {
 function buildAutomationBacklog(config, state) {
     return [
         { name: 'Risk digest', trigger: 'readiness warnings change', action: 'send mentor-ready blocker summary' },
-        { name: 'Evidence request', trigger: 'ready gate has no evidence', action: 'prompt owner for proof link or reviewer note' },
+        { name: 'Evidence request', trigger: 'ready gate has no evidence', action: 'request evidence from the owner with a proof link or reviewer note' },
         { name: 'Renewal packet', trigger: 'owner approval complete', action: `generate ${config.metric} impact report` },
         { name: 'Expansion alert', trigger: 'readiness score stays above 85 for two reviews', action: 'suggest a sponsor update and referral ask' },
         { name: 'Churn save', trigger: 'workspace has blockers for seven days', action: 'create a customer-success intervention checklist' }

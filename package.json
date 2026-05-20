@@ -28,11 +28,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/volta-npo/48-volunteer-skill-matrix.git"
+    "url": "git+https://github.com/volta-npo/volunteer-skill-matrix.git"
   },
-  "homepage": "https://volta-npo.github.io/48-volunteer-skill-matrix/",
+  "homepage": "https://volta-npo.github.io/volunteer-skill-matrix/",
   "bugs": {
-    "url": "https://github.com/volta-npo/48-volunteer-skill-matrix/issues"
+    "url": "https://github.com/volta-npo/volunteer-skill-matrix/issues"
   },
   "author": "Volta Open Source <volta.npo@gmail.com>",
   "engines": {

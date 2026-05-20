@@ -68,5 +68,60 @@ export declare function createSaasMetrics(config: any, state: any, scoreResult: 
         status: string;
         detail: string;
     }[];
+    personas: {
+        role: any;
+        job: string;
+        permission: string;
+        valueMoment: string;
+    }[];
+    journeys: {
+        phase: string;
+        promise: string;
+        activation: string;
+        churnRisk: string;
+    }[];
+    featurePackaging: {
+        feature: string;
+        tier: string;
+        value: string;
+    }[];
+    revenueModel: {
+        lever: string;
+        assumption: string;
+        kpi: string;
+        guardrail: string;
+    }[];
+    analyticsPlan: {
+        event: string;
+        question: string;
+        action: string;
+    }[];
+    securityModel: {
+        control: string;
+        policy: string;
+        evidence: string;
+    }[];
+    successPlaybooks: {
+        name: string;
+        trigger: string;
+        response: string;
+        success: string;
+    }[];
+    integrations: {
+        name: string;
+        direction: string;
+        value: string;
+        privacy: string;
+    }[];
+    expansionRoadmap: {
+        horizon: string;
+        release: string;
+        unlock: string;
+        proof: string;
+    }[];
+    investorBrief: {
+        topic: string;
+        message: string;
+    }[];
 };
 export declare function buildSaasMarkdown(config: any, state: any, scoreResult: any, warnings?: any[]): string;
